@@ -1,0 +1,12 @@
+class Solution {
+public:
+    string largestGoodInteger(string num) {
+       string res;
+        for(int i=num.size()-1;i>1;i--)
+        {
+            if(num[i]==num[i-1]&&num[i]==num[i-2])
+                res=max(res,num.substr(i-2,3));
+        }
+        return res;
+    }
+};
