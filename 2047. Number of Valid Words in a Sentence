@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool isValid(string &w) {
+        int hyphen = 0, n = w.size();
+        for(int i=0; i<n; i++) {
+            if(isdigit(w[i])) return false;
+            if(isalpha(w[i])) continue;
+            if(w[i]=='-') {
+                hyphen++;
+                if(hyphen > 1) return false;
+                if(i==0 || i==n-1) return false;
+                if(!isalpha(w[i-1]) || !isalpha(w[i+1])) return false;
+            }
+            else {
+                if(i != n-1) return false;
+            }
+        }
+        return true;
+    }  
+    int countValidWords(string sentence) {
+        stringstream ss(sentence);
+        string word;
+        int ans = 0;
+        while(ss >> word) {
+            if(isValid(word)) ans++;
+        }
+        return ans;
+    }
+};
