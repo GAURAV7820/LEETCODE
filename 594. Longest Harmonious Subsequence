@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int findLHS(vector<int>& nums) {
+        unordered_map<int,int>freq;
+        int length=0;
+        for(int i=0;i<nums.size();i++){
+            freq[nums[i]]++;
+        }
+        for(int i=0;i<nums.size();i++){
+            if(freq.count(nums[i]+1))
+                length=max(length,freq[nums[i]]+freq[nums[i]+1]);
+        }
+        return length;
+    }
+};
