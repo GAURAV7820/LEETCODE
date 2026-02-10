@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int longestBalanced(vector<int>& nums) {
+        int ans=0;
+        for(int left=0;left<nums.size();left++){
+            unordered_map<int,int>even;
+            unordered_map<int,int>odd;
+            int freqeven=0,freqodd=0;
+            for(int right=left;right<nums.size();right++){
+                if(nums[right]%2==0){
+                    even[nums[right]]++;
+                    if (even[nums[right]]==1)
+                        freqeven++;
+                } else{
+                    odd[nums[right]]++;
+                    if(odd[nums[right]]==1)
+                        freqodd++;
+                }
+                if(freqeven==freqodd){
+                    ans=max(ans,right-left+1);
+                }
+            }
+        }
+        return ans;
+    }
+};
