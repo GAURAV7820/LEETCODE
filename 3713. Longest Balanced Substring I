@@ -1,0 +1,30 @@
+class Solution {
+public:
+
+    bool checkbalanced(vector<int>freq){
+        int current=0;
+        for(int i=0;i<26;i++){
+            if(freq[i]==0) continue;
+            else if(current==0)
+                current=freq[i];
+            else if(current!=freq[i])
+                return false;
+        }
+        return true;
+    }
+
+    int longestBalanced(string s) {
+        int maxLength=0;
+        for(int i=0;i<s.size();i++){
+            vector<int>freq(26);
+            for(int j=i;j<s.size();j++){
+                freq[s[j]-'a']++;
+
+                if(checkbalanced(freq)){
+                    maxLength=max(maxLength,j-i+1);
+                }
+            }
+        }
+        return maxLength;
+    }
+};
