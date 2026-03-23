@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int longestPalindrome(string s) {
+        unordered_map<char,int> count;
+        for(auto ch:s){
+            count[ch]++;
+        }
+        int len=0;
+        bool hasodd=false;
+        for(auto pair:count){
+            int count=pair.second;
+            if(count%2==0)
+                len+=count;
+            else{
+                len+=count-1;
+                hasodd=true;
+            }
+        }
+        if(hasodd)
+            len++;
+        return len;
+    }
+
+};
