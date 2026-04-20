@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        vector<int>ans;
+        int length=nums2.size(),k=0;;
+        for(auto n:nums1){
+            for(int i=0;i<length;i++){
+                if(n==nums2[i]){
+                    k=0;
+                   for(int j=i;j<length;j++){
+                    if(nums2[j]>nums2[i]){
+                        ans.push_back(nums2[j]);
+                        k=1;
+                        break;
+                    }
+                   }
+                   if(k==0){
+                    ans.push_back(-1);
+                   }
+                }
+            }
+        }
+        return ans;
+    }
+};
