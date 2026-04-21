@@ -1,0 +1,14 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if(s.size()!=t.size()) return false;
+        for(auto s1:s){
+            int pos=t.find(s1);
+            if(pos!=string::npos)
+                t.erase(pos,1);
+            else
+                return false;
+        }
+        return true;
+    }
+};
