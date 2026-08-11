@@ -1,0 +1,46 @@
+class Solution {
+public:
+    void dfs(vector<vector<char>>& grid, int r, int c) {
+        int rows = grid.size();
+        int cols = grid[0].size();
+
+        // Outside the grid or water
+        if (r < 0 || r >= rows || c < 0 || c >= cols ||
+            grid[r][c] == '0') {
+            return;
+        }
+
+        // Mark as visited
+        grid[r][c] = '0';
+
+        // Up
+        dfs(grid, r - 1, c);
+
+        // Down
+        dfs(grid, r + 1, c);
+
+        // Left
+        dfs(grid, r, c - 1);
+
+        // Right
+        dfs(grid, r, c + 1);
+    }
+
+    int numIslands(vector<vector<char>>& grid) {
+        int count = 0;
+
+        for (int i = 0; i < grid.size(); i++) {
+            for (int j = 0; j < grid[0].size(); j++) {
+
+                if (grid[i][j] == '1') {
+                    count++;
+
+                    // Visit the entire island
+                    dfs(grid, i, j);
+                }
+            }
+        }
+
+        return count;
+    }
+};
