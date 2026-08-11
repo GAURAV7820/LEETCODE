@@ -1,0 +1,30 @@
+class Solution {
+public:
+ vector<vector<int>> directions = {
+        {-1, 0},  // up
+        {1, 0},   // down
+        {0, -1},  // left
+        {0, 1}    // right
+    };
+    void dfs(vector<vector<int>>&image,int sr,int sc,int start_color,int color){
+        int size=image.size();
+        int n=image[0].size();
+        if(sr<0||sr>=size||sc<0||sc>=n)
+            return;
+        if(image[sr][sc] != start_color)
+            return;
+        image[sr][sc] = color;
+         for (auto& dir : directions) {
+            dfs(image, sr + dir[0], sc + dir[1],
+                start_color, color);
+        }
+    }
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        int start_color=image[sr][sc];
+        if(start_color==color){
+            return image;
+        }
+       dfs(image,sr,sc,start_color,color);
+       return image;
+    }
+};
