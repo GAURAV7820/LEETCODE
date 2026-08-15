@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int firstUniqChar(string s) {
+      unordered_map<char,int>mp;
+      char st;
+      for(auto str:s)
+        mp[str]++; 
+      for(auto str:s)
+        if(mp[str]==1){
+            st=str;
+            break;
+        }
+      for(int i=0;i<s.length();i++){
+        if(s[i]==st)
+            return i;
+      }
+        return -1; 
+    }
+};
