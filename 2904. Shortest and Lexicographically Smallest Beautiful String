@@ -1,0 +1,25 @@
+class Solution {
+public:
+    string shortestBeautifulSubstring(string s, int k) {
+        int left=0,right=0,count=0,len=INT_MAX,min_right=-1,min_left=-1;
+        string ans;
+        for(right=0;right<s.size();right++){
+            if(s[right]=='1') count++;
+            
+            while(count>k){
+                if(s[left]=='1')   count--;
+                left++;
+            }
+                
+            if(count==k){
+                while(left<right&&s[left]=='0')
+                    left++;
+                string current=s.substr(left,right-left+1);
+                if(ans.empty()||current.size()<ans.size()||(current.size() == ans.size() && current < ans))
+                    ans=current;
+            }
+        }
+    
+        return ans;
+    }
+};
