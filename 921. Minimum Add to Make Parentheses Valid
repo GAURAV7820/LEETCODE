@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int minAddToMakeValid(string s) {
+        stack<int>st;
+        int count=0;
+        for(auto c:s){
+            if(c=='(')
+                st.push(0);
+            else if(!st.empty()){
+                st.pop();
+            }
+            else if(st.empty()){
+                count++;
+            }
+        }
+        count+=st.size();
+        return count;
+    }
+};
